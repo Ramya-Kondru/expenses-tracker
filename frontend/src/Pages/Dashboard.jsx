@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import SummaryCards from "../components/SummaryCards";
 import ExpenseForm from "../components/ExpenseForm";
 import ExpenseList from "../components/ExpenseList";
+import "../styles/Dashboard.css";
 
 const Dashboard = () => {
   const [expenses, setExpenses] = useState([]);
@@ -12,14 +13,16 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="dashboard">
       <Navbar />
 
-      <SummaryCards expenses={expenses} />
+      <div className="dashboard-content">
+        <SummaryCards expenses={expenses} />
 
-      <ExpenseForm addExpense={addExpense} />
+        <ExpenseForm addExpense={addExpense} />
 
-      <ExpenseList expenses={expenses} />
+        <ExpenseList expenses={expenses} />
+      </div>
     </div>
   );
 };

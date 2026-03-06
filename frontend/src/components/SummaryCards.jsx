@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/SummaryCards.css";
 
 const SummaryCards = ({ expenses }) => {
   const total = expenses.reduce((sum, e) => sum + Number(e.amount), 0);
@@ -6,37 +7,23 @@ const SummaryCards = ({ expenses }) => {
   const remaining = budget - total;
 
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
+    <div className="cards-container">
+      <div className="card">
         <h3>Total Expenses</h3>
         <p>₹{total}</p>
       </div>
 
-      <div style={styles.card}>
+      <div className="card">
         <h3>Budget</h3>
         <p>₹{budget}</p>
       </div>
 
-      <div style={styles.card}>
+      <div className="card">
         <h3>Remaining</h3>
         <p>₹{remaining}</p>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    display: "flex",
-    gap: "20px",
-    margin: "20px",
-  },
-  card: {
-    padding: "20px",
-    border: "1px solid #ddd",
-    borderRadius: "10px",
-    width: "200px",
-  },
 };
 
 export default SummaryCards;

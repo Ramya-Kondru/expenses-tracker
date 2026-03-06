@@ -1,29 +1,19 @@
 import React from "react";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
-    <div style={styles.navbar}>
-      <h2>💰 Expense Calculator</h2>
-      <div>
-        <button style={styles.btn}>Profile</button>
-        <button style={styles.btn}>Logout</button>
+    <div className="navbar">
+      <h2>
+        💰 <span>Expense Tracker</span>
+      </h2>
+
+      <div className="nav-buttons">
+        <button className="nav-btn">Profile</button>
+        <button className="nav-btn">Logout</button>
       </div>
     </div>
   );
-};
-
-const styles = {
-  navbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "15px",
-    background: "#282c34",
-    color: "white",
-  },
-  btn: {
-    marginLeft: "10px",
-    padding: "5px 10px",
-  },
 };
 
 export default Navbar;

@@ -1,0 +1,41 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: #282c34;
+  color: white;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 20px; /* space between buttons */
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Hover animation */
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Click animation */
+.nav-btn:active {
+  transform: scale(0.95);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar h2 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

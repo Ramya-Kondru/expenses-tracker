@@ -1,0 +1,9 @@
+.dashboard {
+  background-color: #0f172a; /* dark dashboard background */
+  min-height: 100vh;
+  color: #f1f5f9;
+}
+
+.dashboard-content {
+  padding: 25px;
+}
