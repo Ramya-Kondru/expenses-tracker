@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn }) => {
   return (
     <div className="navbar">
       <h2>
@@ -9,8 +9,17 @@ const Navbar = () => {
       </h2>
 
       <div className="nav-buttons">
-        <button className="nav-btn">Profile</button>
-        <button className="nav-btn">Logout</button>
+        {isLoggedIn ? (
+          <>
+            <button className="nav-btn">Profile</button>
+            <button className="nav-btn">Logout</button>
+          </>
+        ) : (
+          <>
+            <button className="nav-btn">Sign In</button>
+            <button className="nav-btn">Sign Up</button>
+          </>
+        )}
       </div>
     </div>
   );
