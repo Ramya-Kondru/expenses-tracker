@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
 import "../styles/Register.css";
 
 function Register() {
@@ -20,6 +21,10 @@ function Register() {
     });
   };
 
+  const handleGoogleRegister = () => {
+    alert("Google Sign Up will be implemented soon!");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,18 +40,14 @@ function Register() {
           name: formData.name,
           email: formData.email,
           password: formData.password,
-        }
+        },
       );
-
 
       // Save token
       localStorage.setItem("token", response.data.token);
 
       // Save user
-      localStorage.setItem(
-        "user",
-        JSON.stringify(response.data.user)
-      );
+      localStorage.setItem("user", JSON.stringify(response.data.user));
 
       // Login status
       localStorage.setItem("isLoggedIn", "true");
@@ -60,11 +61,12 @@ function Register() {
         confirmPassword: "",
       });
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       alert(error.response?.data?.message || "Registration Failed");
     }
   };
+
   return (
     <div className="register-container">
       <div className="register-box">
@@ -106,6 +108,19 @@ function Register() {
             onChange={handleChange}
             required
           />
+
+          <button
+            type="button"
+            className="google-btn"
+            onClick={handleGoogleRegister}
+          >
+            <FcGoogle size={22} />
+            <span>Continue with Google</span>
+          </button>
+
+          <div className="divider">
+            <span>OR</span>
+          </div>
 
           <button type="submit">Register</button>
         </form>

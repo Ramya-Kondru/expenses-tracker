@@ -1,0 +1,81 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Dark overlay so text is readable */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 6%;
+  transform: translateY(-50%);
+  z-index: 2;
+  max-width: 500px;
+  color: white;
+}
+
+.hero-overlay h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.hero-overlay span {
+  color: #d9ff3f;
+}
+
+.hero-overlay p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: #d6d6d6;
+  margin-bottom: 35px;
+}
+
+.hero-btn {
+  padding: 16px 38px;
+  border: none;
+  border-radius: 50px;
+  background: #d9ff3f;
+  color: #111;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(217, 255, 63, 0.35);
+}
+
+@media (max-width: 900px) {
+  .hero-overlay {
+    left: 8%;
+    max-width: 90%;
+  }
+
+  .hero-overlay h1 {
+    font-size: 2.6rem;
+  }
+
+  .hero-overlay p {
+    font-size: 1rem;
+  }
+}

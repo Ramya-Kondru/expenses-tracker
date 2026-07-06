@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
 import "../styles/Login.css";
 
 function Login() {
@@ -32,11 +33,14 @@ function Login() {
 
       alert("Login Successful!");
 
-      // Redirect to Dashboard
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       alert(error.response?.data?.message || "Login Failed");
     }
+  };
+
+  const handleGoogleLogin = () => {
+    alert("Google Login will be implemented soon!");
   };
 
   return (
@@ -67,6 +71,19 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+          </div>
+
+          <button
+            type="button"
+            className="google-btn"
+            onClick={handleGoogleLogin}
+          >
+            <FcGoogle size={22} />
+            <span>Continue with Google</span>
+          </button>
+
+          <div className="divider">
+            <span>OR</span>
           </div>
 
           <button type="submit" className="login-btn">
