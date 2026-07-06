@@ -37,9 +37,7 @@ function Register() {
           password: formData.password,
         }
       );
-      console.log("Full response:", response.data);
-console.log("User:", response.data.user);
-console.log("Token:", response.data.token);
+
 
       // Save token
       localStorage.setItem("token", response.data.token);
