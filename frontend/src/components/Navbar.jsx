@@ -1,7 +1,6 @@
 import React from "react";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
-
 const Navbar = ({ isLoggedIn }) => {
   return (
     <div className="navbar">
@@ -17,9 +16,11 @@ const Navbar = ({ isLoggedIn }) => {
           </>
         ) : (
           <>
-            <button className="nav-btn">Sign In</button>
             <Link to="/register">
               <button className="nav-btn">Sign Up</button>
+            </Link>
+            <Link to="/login">
+              <button className="nav-btn">Sign In</button>
             </Link>
           </>
         )}
