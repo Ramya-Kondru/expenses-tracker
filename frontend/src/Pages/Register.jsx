@@ -35,12 +35,26 @@ function Register() {
           name: formData.name,
           email: formData.email,
           password: formData.password,
-        },
+        }
       );
+      console.log("Full response:", response.data);
+console.log("User:", response.data.user);
+console.log("Token:", response.data.token);
+
+      // Save token
+      localStorage.setItem("token", response.data.token);
+
+      // Save user
+      localStorage.setItem(
+        "user",
+        JSON.stringify(response.data.user)
+      );
+
+      // Login status
+      localStorage.setItem("isLoggedIn", "true");
 
       alert(response.data.message);
 
-      // Clear the form
       setFormData({
         name: "",
         email: "",
@@ -48,13 +62,11 @@ function Register() {
         confirmPassword: "",
       });
 
-      // Redirect to Login page
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       alert(error.response?.data?.message || "Registration Failed");
     }
   };
-
   return (
     <div className="register-container">
       <div className="register-box">

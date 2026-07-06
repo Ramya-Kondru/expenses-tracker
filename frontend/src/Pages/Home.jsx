@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 const Home = () => {
   return (
     <>
-      <Navbar isLoggedIn={false} />
+      <Navbar  />
 
       <div>
         <h1>Welcome to Expense Tracker</h1>

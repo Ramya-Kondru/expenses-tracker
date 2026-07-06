@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Navbar isLoggedIn={true} />
+      <Navbar />
 
       <div className="dashboard-content">
         <SummaryCards expenses={expenses} />
