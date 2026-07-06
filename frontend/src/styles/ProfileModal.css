@@ -18,12 +18,16 @@
 
 .profile-modal h2{
     margin-bottom:20px;
+    color:black
 }
 
 .profile-details{
     text-align:left;
     margin-bottom:25px;
     line-height:2;
+}
+.profile-details p{
+    color: black;
 }
 
 .close-btn{
