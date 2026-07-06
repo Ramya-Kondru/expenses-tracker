@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import axios from 'axios';
 
-const ExpenseForm = ({ addExpense }) => {
+const ExpenseForm = ({ fetchExpenses }) => {
   const [expense, setExpense] = useState({
     name: "",
     amount: "",
@@ -15,11 +16,41 @@ const ExpenseForm = ({ addExpense }) => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addExpense(expense);
-    setExpense({ name: "", amount: "", category: "", date: "" });
-  };
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const token = localStorage.getItem("token");
+
+    await axios.post(
+      "http://localhost:5000/api/expenses",
+      {
+        title: expense.name,
+        amount: Number(expense.amount),
+        category: expense.category,
+        date: expense.date,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    alert("Expense Added Successfully");
+     await fetchExpenses();
+    setExpense({
+      name: "",
+      amount: "",
+      category: "",
+      date: "",
+    });
+
+    // We'll refresh the list in the next step
+  } catch (error) {
+    alert(error.response?.data?.message || "Failed to add expense");
+  }
+};
 
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
@@ -50,6 +81,7 @@ const ExpenseForm = ({ addExpense }) => {
         type="date"
         value={expense.date}
         onChange={handleChange}
+        required
       />
 
       <button>Add Expense</button>

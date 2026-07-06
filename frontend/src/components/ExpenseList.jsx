@@ -1,26 +1,59 @@
 import React from "react";
 
-const ExpenseList = ({ expenses }) => {
+const ExpenseList = ({ expenses, onDelete }) => {
   return (
-    <table border="1" cellPadding="10" style={{ margin: "20px" }}>
+    <table
+      border="1"
+      cellPadding="10"
+      style={{
+        margin: "20px",
+        width: "100%",
+        borderCollapse: "collapse",
+      }}
+    >
       <thead>
         <tr>
           <th>Name</th>
           <th>Amount</th>
           <th>Category</th>
           <th>Date</th>
+          <th>Actions</th>
         </tr>
       </thead>
 
       <tbody>
-        {expenses.map((e, index) => (
-          <tr key={index}>
-            <td>{e.name}</td>
-            <td>₹{e.amount}</td>
-            <td>{e.category}</td>
-            <td>{e.date}</td>
+        {expenses.length > 0 ? (
+          expenses.map((expense) => (
+            <tr key={expense._id}>
+              <td>{expense.title}</td>
+              <td>₹{expense.amount}</td>
+              <td>{expense.category}</td>
+              <td>{new Date(expense.date).toLocaleDateString("en-GB")}</td>
+
+              <td>
+                <button
+                  onClick={() => onDelete(expense._id)}
+                  style={{
+                    padding: "6px 12px",
+                    cursor: "pointer",
+                    color: "#fff",
+                    backgroundColor: "#dc3545",
+                    border: "none",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="5" style={{ textAlign: "center" }}>
+              No expenses found.
+            </td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   );
