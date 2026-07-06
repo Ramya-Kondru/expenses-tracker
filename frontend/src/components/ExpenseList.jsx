@@ -1,6 +1,6 @@
 import React from "react";
 
-const ExpenseList = ({ expenses, onDelete }) => {
+const ExpenseList = ({ expenses, onEdit, onDelete }) => {
   return (
     <table
       border="1"
@@ -30,7 +30,27 @@ const ExpenseList = ({ expenses, onDelete }) => {
               <td>{expense.category}</td>
               <td>{new Date(expense.date).toLocaleDateString("en-GB")}</td>
 
-              <td>
+              <td
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  justifyContent: "center",
+                }}
+              >
+                <button
+                  onClick={() => onEdit(expense)}
+                  style={{
+                    padding: "6px 12px",
+                    cursor: "pointer",
+                    color: "#fff",
+                    backgroundColor: "#0d6efd",
+                    border: "none",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Edit
+                </button>
+
                 <button
                   onClick={() => onDelete(expense._id)}
                   style={{
