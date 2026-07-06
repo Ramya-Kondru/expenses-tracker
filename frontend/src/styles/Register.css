@@ -35,7 +35,9 @@
   flex-direction: column;
 }
 
-.register-box input {
+/* ---------- NORMAL INPUTS ---------- */
+
+.register-box > form > input {
   padding: 14px;
   margin-bottom: 20px;
 
@@ -46,19 +48,73 @@
   border-radius: 10px;
 
   font-size: 15px;
-
   transition: all 0.3s ease;
 }
 
-.register-box input::placeholder {
+.register-box > form > input::placeholder {
   color: #9ca3af;
 }
 
-.register-box input:focus {
+.register-box > form > input:focus {
   outline: none;
   border-color: #d9ff3f;
   box-shadow: 0 0 12px rgba(217, 255, 63, 0.25);
 }
+
+/* ---------- PASSWORD INPUTS ---------- */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 14px;
+  padding-right: 55px;
+
+  background: #1f2937;
+  color: #ffffff;
+
+  border: 1px solid #374151;
+  border-radius: 10px;
+
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.password-wrapper input::placeholder {
+  color: #9ca3af;
+}
+
+.password-wrapper input:focus {
+  outline: none;
+  border-color: #d9ff3f;
+  box-shadow: 0 0 12px rgba(217, 255, 63, 0.25);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  color: #d1d5db;
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #d9ff3f;
+}
+
+/* ---------- BUTTONS ---------- */
 
 .register-box button {
   padding: 14px;
@@ -84,22 +140,6 @@
 
 .register-box button:active {
   transform: scale(0.97);
-}
-
-.register-box p {
-  text-align: center;
-  margin-top: 22px;
-  color: #d1d5db;
-}
-
-.register-box a {
-  text-decoration: none;
-  color: #d9ff3f;
-  font-weight: 600;
-}
-
-.register-box a:hover {
-  text-decoration: underline;
 }
 
 .google-btn {
@@ -154,4 +194,20 @@
   color: #9ca3af;
   font-size: 14px;
   font-weight: 500;
+}
+
+.register-box p {
+  text-align: center;
+  margin-top: 22px;
+  color: #d1d5db;
+}
+
+.register-box a {
+  text-decoration: none;
+  color: #d9ff3f;
+  font-weight: 600;
+}
+
+.register-box a:hover {
+  text-decoration: underline;
 }

@@ -2,10 +2,14 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../styles/Register.css";
 
 function Register() {
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -40,16 +44,11 @@ function Register() {
           name: formData.name,
           email: formData.email,
           password: formData.password,
-        },
+        }
       );
 
-      // Save token
       localStorage.setItem("token", response.data.token);
-
-      // Save user
       localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      // Login status
       localStorage.setItem("isLoggedIn", "true");
 
       alert(response.data.message);
@@ -91,23 +90,51 @@ function Register() {
             required
           />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+            <span
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FaEyeSlash size={26} />
+              ) : (
+                <FaEye size={26} />
+              )}
+            </span>
+          </div>
+
+          <div className="password-wrapper">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+
+            <span
+              className="password-toggle"
+              onClick={() =>
+                setShowConfirmPassword(!showConfirmPassword)
+              }
+            >
+              {showConfirmPassword ? (
+                <FaEyeSlash size={26} />
+              ) : (
+                <FaEye size={26} />
+              )}
+            </span>
+          </div>
 
           <button
             type="button"

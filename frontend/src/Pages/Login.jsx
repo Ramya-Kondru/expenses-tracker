@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "../styles/Login.css";
 
 function Login() {
@@ -9,6 +10,7 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,16 +21,11 @@ function Login() {
         {
           email,
           password,
-        },
+        }
       );
 
-      // Save JWT token
       localStorage.setItem("token", response.data.token);
-
-      // Save logged-in user details
       localStorage.setItem("user", JSON.stringify(response.data.user));
-
-      // Login status
       localStorage.setItem("isLoggedIn", "true");
 
       alert("Login Successful!");
@@ -64,13 +61,26 @@ function Login() {
           <div className="input-group">
             <label>Password</label>
 
-            <input
-              type="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+
+              <span
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <FaEyeSlash size={26} />
+                ) : (
+                  <FaEye size={26} />
+                )}
+              </span>
+            </div>
           </div>
 
           <button

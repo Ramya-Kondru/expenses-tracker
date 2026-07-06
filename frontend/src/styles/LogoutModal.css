@@ -15,9 +15,12 @@
     padding:25px;
     text-align:center;
 }
-
+.logout-modal h2{
+    color: black;
+}
 .logout-modal p{
     margin:20px 0;
+    color:black
 }
 
 .logout-buttons{

@@ -3,10 +3,23 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../styles/Home.css";
 
-import heroImage from "../assets/hero_section_image.png"; // <-- rename your image
+import heroImage from "../assets/hero_section_image.png";
 
 const Home = () => {
   const navigate = useNavigate();
+
+  // Handle Get Started button
+  const handleGetStarted = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // User is already logged in
+      navigate("/dashboard");
+    } else {
+      // User is not logged in
+      navigate("/register");
+    }
+  };
 
   return (
     <>
@@ -33,7 +46,7 @@ const Home = () => {
             achieve your financial goals.
           </p>
 
-          <button className="hero-btn" onClick={() => navigate("/Register")}>
+          <button className="hero-btn" onClick={handleGetStarted}>
             Get Started →
           </button>
         </div>

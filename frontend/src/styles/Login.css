@@ -40,7 +40,58 @@
   color: #d1d5db;
 }
 
-.input-group input {
+/* ---------- NEW PASSWORD WRAPPER ---------- */
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding: 14px;
+  padding-right: 55px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.password-wrapper input::placeholder {
+  color: #9ca3af;
+}
+
+.password-wrapper input:focus {
+  border-color: #d9ff3f;
+  box-shadow: 0 0 12px rgba(217, 255, 63, 0.25);
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #d1d5db;
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: #d9ff3f;
+}
+
+/* ---------- NORMAL INPUTS ---------- */
+
+.input-group > input {
   padding: 14px;
   background: #1f2937;
   border: 1px solid #374151;
@@ -53,11 +104,11 @@
   transition: all 0.3s ease;
 }
 
-.input-group input::placeholder {
+.input-group > input::placeholder {
   color: #9ca3af;
 }
 
-.input-group input:focus {
+.input-group > input:focus {
   border-color: #d9ff3f;
   box-shadow: 0 0 12px rgba(217, 255, 63, 0.25);
 }
