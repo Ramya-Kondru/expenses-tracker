@@ -27,11 +27,22 @@ function Register() {
       return;
     }
 
-    console.log(formData);
+    // Save user in localStorage
+    const user = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    };
 
-    // API call will be added later
+    localStorage.setItem("user", JSON.stringify(user));
 
-    navigate("/login");
+    // Mark user as logged in
+    localStorage.setItem("isLoggedIn", "true");
+
+    alert("Registration Successful!");
+
+    // Redirect to Dashboard
+    navigate("/");
   };
 
   return (
@@ -76,9 +87,7 @@ function Register() {
             required
           />
 
-          <button type="submit">
-            Register
-          </button>
+          <button type="submit">Register</button>
         </form>
 
         <p>
