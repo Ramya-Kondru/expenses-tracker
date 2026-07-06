@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Register.css";
 
 function Register() {
@@ -19,7 +20,7 @@ function Register() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
@@ -27,22 +28,31 @@ function Register() {
       return;
     }
 
-    // Save user in localStorage
-    const user = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-    };
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/register",
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        },
+      );
 
-    localStorage.setItem("user", JSON.stringify(user));
+      alert(response.data.message);
 
-    // Mark user as logged in
-    localStorage.setItem("isLoggedIn", "true");
+      // Clear the form
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
 
-    alert("Registration Successful!");
-
-    // Redirect to Dashboard
-    navigate("/");
+      // Redirect to Login page
+      navigate("/login");
+    } catch (error) {
+      alert(error.response?.data?.message || "Registration Failed");
+    }
   };
 
   return (

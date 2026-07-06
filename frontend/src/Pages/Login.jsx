@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Login.css";
 
 function Login() {
@@ -8,27 +9,33 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Get the registered user from localStorage
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        {
+          email,
+          password,
+        },
+      );
 
-    if (!storedUser) {
-      alert("No account found. Please register first.");
-      return;
-    }
+      // Save JWT token
+      localStorage.setItem("token", response.data.token);
 
-    // Validate credentials
-    if (storedUser.email === email && storedUser.password === password) {
+      // Save logged-in user details
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+      // Login status
       localStorage.setItem("isLoggedIn", "true");
 
       alert("Login Successful!");
 
       // Redirect to Dashboard
       navigate("/");
-    } else {
-      alert("Invalid Email or Password");
+    } catch (error) {
+      alert(error.response?.data?.message || "Login Failed");
     }
   };
 
